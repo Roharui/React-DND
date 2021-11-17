@@ -18,8 +18,10 @@ const TD = styled.td`
 
 const Row = ({ data, index }) => {
   return (
+    // draggableId 는 전역적으로 유일해야만 합니다
     <Draggable draggableId={data[0]} index={index}>
       {(provided) => (
+        // 아래 코드는 필수적으로 들어가야 합니다.
         <tr
           {...provided.draggableProps}
           {...provided.dragHandleProps}
