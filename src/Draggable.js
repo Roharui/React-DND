@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 
-const List = styled.div`
+const List = styled.table`
   border: 1px solid lightgray;
   border-radius: 2px;
   padding: 8px;
   margin-bottom: 8px;
 `;
 
-const Container = styled.div`
+const TD = styled.td`
   border: 1px solid lightgray;
   border-radius: 2px;
   padding: 8px;
@@ -18,15 +18,17 @@ const Container = styled.div`
 
 const Row = ({ data, index }) => {
   return (
-    <Draggable draggableId={data} index={index}>
+    <Draggable draggableId={data[0]} index={index}>
       {(provided) => (
-        <Container
+        <tr
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          {data}
-        </Container>
+          {data.map((x, i) => (
+            <TD key={i}>{x}</TD>
+          ))}
+        </tr>
       )}
     </Draggable>
   );
